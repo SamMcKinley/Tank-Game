@@ -16,12 +16,19 @@ public class TankMotor : MonoBehaviour
     {
         characterController = gameObject.GetComponent<CharacterController>();
         data = gameObject.GetComponent<TankData>();
+        tf = gameObject.GetComponent<Transform>();
+    }
+    public void Shoot(GameObject Bullet, Transform FirePoint)
+    {
+        //Instantiate the bullet
+        Instantiate(Bullet, FirePoint.position, FirePoint.rotation);
     }
     //Handle moving the tank
     public void Move(float speed)
     {
         // Create a vector to hold our speed data
-        Vector3 speedVector = tf.forward * speed;
+        Vector3 speedVector = tf.forward * speed *Time.deltaTime;
+        characterController.SimpleMove(speedVector);
     }
 
     //Handle rotating the tank
@@ -31,9 +38,24 @@ public class TankMotor : MonoBehaviour
         Vector3 rotateVector;
         //Start by rotating by one degree per frame draw
         rotateVector = Vector3.up;
-        //adjust rotation based off speed
-        rotateVector *= Time.deltaTime;
-        //pass our rotation vecctor into transform.rotate
-        transform.Rotate(rotateVector, Space.Self);
+        
+
+        if (speed < 0)
+        {
+            //adjust rotation based off speed
+            rotateVector -= new Vector3(0, Time.deltaTime * Mathf.Abs(speed),0);
+            //pass our rotation vector into transform.rotate
+            transform.Rotate(-rotateVector, Space.Self);
+
+        }
+        else
+        {
+            //adjust rotation based off speed
+            rotateVector += new Vector3(0, Time.deltaTime * Mathf.Abs(speed), 0);
+            //pass our rotation vector into transform.rotate
+            transform.Rotate(rotateVector, Space.Self);
+        }
+
+        
     }
 }
