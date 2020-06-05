@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     Rigidbody Rigidbody;
     [SerializeField] private float ShootingForce;
     [SerializeField] private float BulletDelay;
+    [SerializeField] private float BulletDamage;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,13 @@ public class Bullet : MonoBehaviour
         if (collision.collider.CompareTag("ground"))
         {
             //Destroy the bullet
+            Destroy(this.gameObject);
+        }
+        //If the bullet collides with the enemy
+        if (collision.collider.CompareTag("Enemy"))
+        {//The enemy takes damage
+            Health Health = collision.collider.GetComponent<Health>();
+            Health.TakeDamage(BulletDamage);
             Destroy(this.gameObject);
         }
     }

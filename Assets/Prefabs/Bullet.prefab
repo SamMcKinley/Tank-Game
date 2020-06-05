@@ -122,5 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4cf50b934c66149bbc5d7ce3df1d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShootingForce: 5000
+  ShootingForce: 500
   BulletDelay: 3
+  BulletDamage: 1
