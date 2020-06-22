@@ -5,4 +5,5 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public GameObject PlayerPrefab;
+    public Transform Player;
 }

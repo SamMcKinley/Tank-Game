@@ -12,19 +12,17 @@ public class Health : MonoBehaviour
         data = gameObject.GetComponent<TankData>();
     }
 
-    private void Update()
-    {
-        //If enemy or player has less than one health
-        if(data.Health < 1)
-        {
-            //Character death
-            Die();
-        }
-    }
+    
     public void TakeDamage(float DamageAmount)
     {
         //Subtracts damage amount from total health
         data.Health -= DamageAmount;
+        //If enemy or player has less than one health
+        if (data.Health <= 0)
+        {
+            //Character death
+            Die();
+        }
     }
     private void Die()
     {

@@ -42,13 +42,13 @@ public class InputManager : MonoBehaviour
                 else if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     //Rotating the player to the left
-                    motor.Rotate(-data.moveSpeed);
+                    motor.Rotate(-data.rotateSpeed);
                 }
                 //Checking to see if the player pressed the right arrow
                 else if (Input.GetKey(KeyCode.RightArrow))
                 {
                     //Rotating the player to the right
-                    motor.Rotate(data.moveSpeed);
+                    motor.Rotate(data.rotateSpeed);
                 }
                 //If the player did not press anything
                 else
@@ -74,13 +74,13 @@ public class InputManager : MonoBehaviour
                 else if (Input.GetKey(KeyCode.A))
                 {
                     //Rotate the player to the left
-                    motor.Rotate(-data.moveSpeed);
+                    motor.Rotate(-data.rotateSpeed);
                 }
                 //Checking to see if the user pressed the D Key
                 else if (Input.GetKey(KeyCode.D))
                 {
                     //Rotate the user to the right
-                    motor.Rotate(data.moveSpeed);
+                    motor.Rotate(data.rotateSpeed);
                 }
                 //If the user did not press anything
                 else
