@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 
 public class AIController : MonoBehaviour
@@ -11,10 +13,15 @@ public class AIController : MonoBehaviour
     public bool CanSee = false;
     public float Timer;
     public bool CanShoot;
+    public float SafeDistance;
 
+    public enum Personality
+    {
+        Cautious, 
+    }
     public enum StateMachine
     {
-        patrol, advance, avoid, attack, flee, search
+        patrol, advance, avoid, attack, flee, search, idle
     }
     public StateMachine CurrentState;
 
@@ -31,64 +38,45 @@ public class AIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (CurrentState)
-        {
-            case StateMachine.patrol:
-                patrol();
-                if (CanSee == true)
-                {
-                    ChangeState(StateMachine.advance);
-                }
-                if(data.Health != data.MaxHealth)
-                {
-                    ChangeState(StateMachine.flee);
-                }
-                break;
-            case StateMachine.advance:
-                advance();
-                if (Vector3.Distance(transform.position, GameManager.Instance.Player.position) < data.Range)
-                {
-                    ChangeState(StateMachine.attack);
-                }
-                if(CanSee == false)
-                {
-                    ChangeState(StateMachine.patrol);
-                }
-                if (data.Health != data.MaxHealth)
-                {
-                    ChangeState(StateMachine.flee);
-                }
-                break;
-            case StateMachine.avoid:
-                break;
-            case StateMachine.attack:
-                attack();
-                if(Vector3.Distance(transform.position, GameManager.Instance.Player.position) > data.Range)
-                {
-                    ChangeState(StateMachine.advance);
-                }
-                if (data.Health != data.MaxHealth)
-                {
-                    ChangeState(StateMachine.flee);
-                }
-                break;
-            case StateMachine.flee:
-                flee();
-                break;
-            case StateMachine.search:
-                break;
-
-
-        }
+       
 
     }
-    void patrol()
+
+    protected void idle()
     {
+
+        
+    }
+
+    protected bool IsInRange(bool IsShooting)
+    {
+        float DistanceBetween = Vector3.Distance(transform.position, GameManager.Instance.Player.transform.position);
+        if(IsShooting == true)
+        {
+            if (DistanceBetween <= data.Range)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if(DistanceBetween <= data.CowardlySearchRange)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected void patrol()
+    {
+        Debug.Log(WayPoint[CurrentWaypoint]);
         motor.Move(data.moveSpeed);
-        motor.RotateTowards(WayPoint[CurrentWaypoint].position, data.rotateSpeed);
+        motor.RotateTowards(WayPoint[CurrentWaypoint].position);
         //Check if we are close enough to the current waypoint
         if (Vector3.Distance(transform.position, WayPoint[CurrentWaypoint].position) < 1)
         {
+            Debug.Log(Vector3.Distance(transform.position, WayPoint[CurrentWaypoint].position));
             //If we are, switch to the next waypoint
             //if our current waypoint is greater than or equal to waypoint.size
             if (CurrentWaypoint >= WayPoint.Count)
@@ -105,18 +93,18 @@ public class AIController : MonoBehaviour
 
 
     }
-    void advance()
+    protected void advance()
     {
         //Move function from TankMotor
         motor.Move(data.moveSpeed);
         //RotateTowards from TankMotor
-        motor.RotateTowards(GameManager.Instance.Player.position, data.rotateSpeed);
+        motor.RotateTowards(GameManager.Instance.Player.position);
     }
-    void avoid()
+    protected void avoid()
     {
 
     }
-    void attack()
+    protected void attack()
     {
         //if we are able to see the player and are close enough to shoot 
         //Subtracting real time from our timer value
@@ -141,15 +129,16 @@ public class AIController : MonoBehaviour
 
         
     }
-    void flee()
+    protected void flee()
     {
         data.isFleeing = true;
         Vector3 PlayerPosition = GameManager.Instance.Player.position;
         motor.Move(data.moveSpeed);
-        motor.RotateTowards(PlayerPosition, data.rotateSpeed);
+        motor.RotateTowards(PlayerPosition);
     }
-    void search()
+    protected virtual void search()
     {
+       
 
     }
 

@@ -11,8 +11,18 @@ public class Health : MonoBehaviour
     {
         data = gameObject.GetComponent<TankData>();
     }
-
+    public void AddHealth(float Amount)
+    {
+        data.Health += Amount;
+        if(data.Health > data.MaxHealth)
+        {
+            data.Health = data.MaxHealth;
+        }
+        GameManager.Instance.EnemiesUnderAttack.Remove(this.gameObject);
+    }
     
+
+
     public void TakeDamage(float DamageAmount)
     {
         //Subtracts damage amount from total health
@@ -23,9 +33,15 @@ public class Health : MonoBehaviour
             //Character death
             Die();
         }
+        if (gameObject.GetComponent<AIController>())
+        {
+            GameManager.Instance.EnemiesUnderAttack.Add(this.gameObject);
+        }
+        
     }
     private void Die()
     {
+        GameManager.Instance.EnemiesUnderAttack.Remove(this.gameObject);
         Destroy(this.gameObject);
     }
     

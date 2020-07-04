@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Playercontroller : MonoBehaviour
 {
-    private TankData data;
+    public TankData data;
     private TankMotor motor;
     // Start is called before the first frame update
     void Start()

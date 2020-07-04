@@ -58,9 +58,9 @@ public class TankMotor : MonoBehaviour
         
         
     }
-    public bool RotateTowards(Vector3 target, float rotationSpeed)
+    public void RotateTowards(Vector3 target)
     {
-        
+        Debug.Log(target);
         Vector3 VectorToTarget;
         //A line that goes from our current position to the target's position
         if(data.isFleeing == true)
@@ -71,13 +71,11 @@ public class TankMotor : MonoBehaviour
         {
             VectorToTarget = target - transform.position;
         }
-        Quaternion targetRotation = Quaternion.LookRotation(VectorToTarget);
-        if(targetRotation == transform.rotation)
-        {
-            return false;
-        }
-        tf.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation,
+        Quaternion targetRotation = Quaternion.LookRotation(VectorToTarget, Vector3.up);
+        targetRotation.x = 0;
+        targetRotation.z = 0;
+        data.transform.rotation = Quaternion.RotateTowards(data.transform.rotation, targetRotation,
             data.rotateSpeed * Time.deltaTime);
-        return true;
+
     } 
 }

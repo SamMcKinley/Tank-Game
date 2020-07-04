@@ -12,7 +12,15 @@ public class TankData : MonoBehaviour
     public float Health;
     public float Range;
     public float MaxHealth;
-    public bool isFleeing;
+    public bool isFleeing = false;
     public float fireRate;
+    public Health HealthScript;
+    public float CowardlySearchRange;
+    public float StoppingDistance;
+    public float FleeLimit;
+    public float NoiseDistance;
+    public float HearingDistance;
+    public bool CanHear;
+
 }
 

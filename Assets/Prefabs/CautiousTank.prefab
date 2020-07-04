@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ce480fe58b98ea145a12bf4b69eedc53, type: 2}
+  - {fileID: 2100000, guid: 36d319f5a361e4e4db1b8ad862f2631f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,6 +123,9 @@ GameObject:
   - component: {fileID: 387222216086376109}
   - component: {fileID: 4652074429081541428}
   - component: {fileID: 9014030761454797771}
+  - component: {fileID: 4671896357061981935}
+  - component: {fileID: 4671896357061981933}
+  - component: {fileID: 4671896357061981940}
   m_Layer: 0
   m_Name: EnemyTank
   m_TagString: Enemy
@@ -179,9 +182,14 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 90
   Bullet: {fileID: 3625956354100056415, guid: cc339c71724b03348a6ebc3c2050d015, type: 3}
-  FirePoint: {fileID: 0}
-  ShootDelay: 0
+  FirePoint: {fileID: 4803692609250059419}
+  ShootDelay: 2
   Health: 5
+  Range: 2
+  MaxHealth: 5
+  isFleeing: 0
+  fireRate: 0
+  HealthScript: {fileID: 0}
 --- !u!114 &4652074429081541428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +214,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1953f01e60cbfeb4b9ea25c325e39aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &4671896357061981935
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611263536876927860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4671896357061981933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611263536876927860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e81a35c497b6804a8b44d5b88236cb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WayPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CurrentWaypoint: 0
+  data: {fileID: 387222216086376109}
+  motor: {fileID: 4652074429081541428}
+  CanSee: 0
+  Timer: 0
+  CanShoot: 0
+  SafeDistance: 0
+  CurrentState: 0
+--- !u!114 &4671896357061981940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611263536876927860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ca0103bbb3e90479cbce450af3e0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4671896357061981933}
+  ViewRadius: 5
+  ViewAngle: 90
+  target: {fileID: 0}
+  ObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7611263536876927862
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +327,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd6d9bac0c71195479af54e1db0d691e, type: 2}
+  - {fileID: 2100000, guid: 36d319f5a361e4e4db1b8ad862f2631f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -341,7 +405,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8c956b0848f387849aa2a6ee9ee19242, type: 2}
+  - {fileID: 2100000, guid: 36d319f5a361e4e4db1b8ad862f2631f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -483,7 +547,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ce480fe58b98ea145a12bf4b69eedc53, type: 2}
+  - {fileID: 2100000, guid: 36d319f5a361e4e4db1b8ad862f2631f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -514,7 +578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4803692609250059419}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: EnemyFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

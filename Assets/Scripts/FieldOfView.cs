@@ -9,15 +9,42 @@ public class FieldOfView : MonoBehaviour
     public float ViewAngle;
     public Transform target;
     public LayerMask ObstacleLayer;
+    public ObstacleAvoidance obstacleAvoidance;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        obstacleAvoidance = gameObject.GetComponent<ObstacleAvoidance>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        RaycastHit Hit = default;
+        if (Physics.Raycast(transform.position, transform.forward, out Hit, ViewRadius))
+        {
+            Debug.Log(Hit.collider.name);
+            if (Hit.collider.GetComponent<Wall>())
+            {
+                obstacleAvoidance.CanMove = true;
+            }
+            else
+            {
+                obstacleAvoidance.CanMove = false;
+            }
+
+            if (Hit.collider.GetComponent<Playercontroller>())
+            {
+                controller.CanSee = true;
+            }
+            else
+            {
+                controller.CanSee = false;
+            }
+            //if not, they can see the player
+            controller.CanSee = true;
+        }
+    
         //check the distance from the enemy to the player
         //if that distance is less than the view radius
         if (Vector3.Distance(transform.position, target.position) < ViewRadius)
@@ -25,20 +52,7 @@ public class FieldOfView : MonoBehaviour
             //check to see if the player is in the view angle
             if(Vector3.Angle(transform.position, target.position) < ViewAngle / 2)
             {
-                float Distance = Vector3.Distance(transform.position, target.position);
-                Vector3 DirectionToTarget = target.position - transform.position;
-                //if they are, raycast to see if there are any obstacles in the way
-                if (!Physics.Raycast(transform.position, DirectionToTarget, Distance, ObstacleLayer))
-                {
-                    //if not, they can see the player
-                    controller.CanSee = true;
-                }
-                else
-                {
-                    controller.CanSee = false;
-                }
-
-                //otherwise, we can't see the player
+                controller.CanSee = true;
             }
             else
             {
