@@ -14,6 +14,7 @@ public class AIController : MonoBehaviour
     public float Timer;
     public bool CanShoot;
     public float SafeDistance;
+    public ObstacleAvoidance avoidance;
 
     public enum Personality
     {
@@ -71,9 +72,12 @@ public class AIController : MonoBehaviour
     protected void patrol()
     {
         Debug.Log(WayPoint[CurrentWaypoint]);
-        motor.Move(data.moveSpeed);
-        motor.RotateTowards(WayPoint[CurrentWaypoint].position);
-        //Check if we are close enough to the current waypoint
+        if (avoidance.CurrentAvoidanceState == ObstacleAvoidance.Avoidance.none)
+        {
+            motor.Move(data.moveSpeed);
+            motor.RotateTowards(WayPoint[CurrentWaypoint].position);
+
+        }        //Check if we are close enough to the current waypoint
         if (Vector3.Distance(transform.position, WayPoint[CurrentWaypoint].position) < 1)
         {
             Debug.Log(Vector3.Distance(transform.position, WayPoint[CurrentWaypoint].position));
@@ -110,7 +114,7 @@ public class AIController : MonoBehaviour
         //Subtracting real time from our timer value
         Timer -= Time.deltaTime;
         //If timer is less than one
-        if (Timer < 1)
+        if (Timer <= 0)
         {
             //Then the tank is able to shoot
             CanShoot = true;

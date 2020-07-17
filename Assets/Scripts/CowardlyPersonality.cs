@@ -17,7 +17,12 @@ public class CowardlyPersonality : AIController
         switch (CurrentState)
         {
             case StateMachine.flee:
-                flee();
+                avoidance.Avoid();
+                if(avoidance.CurrentAvoidanceState == ObstacleAvoidance.Avoidance.none)
+                {
+                    flee();
+                }
+                
                 if(CanSee == false)
                 {
                     ChangeState(StateMachine.patrol);

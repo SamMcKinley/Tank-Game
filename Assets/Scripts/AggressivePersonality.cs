@@ -7,7 +7,7 @@ public class AggressivePersonality : AIController
     // Start is called before the first frame update
     void Start()
     {
-        
+        CurrentState = StateMachine.idle;
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class AggressivePersonality : AIController
                 {
                     ChangeState(StateMachine.attack);
                 }
-                if(CanSee == true)
+                else if(CanSee == true)
                 {
                     ChangeState(StateMachine.advance);
                 }

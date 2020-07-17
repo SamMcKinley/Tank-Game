@@ -21,18 +21,22 @@ public class FieldOfView : MonoBehaviour
     void Update()
     {
         RaycastHit Hit = default;
-        if (Physics.Raycast(transform.position, transform.forward, out Hit, ViewRadius))
+        Debug.DrawRay(transform.position, transform.forward);
+        if (Physics.Raycast(transform.position, transform.forward, out Hit, ViewRadius, ObstacleLayer))
         {
             Debug.Log(Hit.collider.name);
-            if (Hit.collider.GetComponent<Wall>())
-            {
+            
+                Debug.Log("Can Move");
                 obstacleAvoidance.CanMove = true;
-            }
-            else
-            {
-                obstacleAvoidance.CanMove = false;
-            }
-
+            
+            
+        }
+        else
+        {
+            obstacleAvoidance.CanMove = false;
+        }
+        if (Physics.Raycast(transform.position, transform.forward, out Hit, ViewRadius))
+        { 
             if (Hit.collider.GetComponent<Playercontroller>())
             {
                 controller.CanSee = true;

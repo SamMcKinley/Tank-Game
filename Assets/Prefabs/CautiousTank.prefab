@@ -126,8 +126,12 @@ GameObject:
   - component: {fileID: 4671896357061981935}
   - component: {fileID: 4671896357061981933}
   - component: {fileID: 4671896357061981940}
+  - component: {fileID: 6747934954980448460}
+  - component: {fileID: 4671896357061981942}
+  - component: {fileID: 5820189586286130628}
+  - component: {fileID: 8268237122112529477}
   m_Layer: 0
-  m_Name: EnemyTank
+  m_Name: CautiousTank
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,6 +194,12 @@ MonoBehaviour:
   isFleeing: 0
   fireRate: 0
   HealthScript: {fileID: 0}
+  CowardlySearchRange: 0
+  StoppingDistance: 0
+  FleeLimit: 0
+  NoiseDistance: 0
+  HearingDistance: 2
+  CanHear: 0
 --- !u!114 &4652074429081541428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +260,7 @@ MonoBehaviour:
   Timer: 0
   CanShoot: 0
   SafeDistance: 0
+  avoidance: {fileID: 6747934954980448460}
   CurrentState: 0
 --- !u!114 &4671896357061981940
 MonoBehaviour:
@@ -269,7 +280,66 @@ MonoBehaviour:
   target: {fileID: 0}
   ObstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
+  obstacleAvoidance: {fileID: 6747934954980448460}
+--- !u!114 &6747934954980448460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611263536876927860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76483a480b5bf734899fb7ae6a91a4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentAvoidanceState: 0
+  TimeToMove: 3
+  CanMove: 0
+  AvoidAngle: 45
+--- !u!114 &4671896357061981942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611263536876927860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06edefdcffc561b48aa990dff48ea474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 387222216086376109}
+--- !u!114 &5820189586286130628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611263536876927860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76483a480b5bf734899fb7ae6a91a4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentAvoidanceState: 0
+  TimeToMove: 3
+  CanMove: 0
+  AvoidAngle: 45
+--- !u!114 &8268237122112529477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611263536876927860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06edefdcffc561b48aa990dff48ea474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 387222216086376109}
 --- !u!1 &7611263536876927862
 GameObject:
   m_ObjectHideFlags: 0

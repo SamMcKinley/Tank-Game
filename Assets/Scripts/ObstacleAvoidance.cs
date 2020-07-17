@@ -6,6 +6,7 @@ using UnityEngine.Experimental.XR;
 
 public class ObstacleAvoidance : MonoBehaviour
 {
+    float Angle = 0;
     public Avoidance CurrentAvoidanceState;
     public float TimeToMove;
     private float Timer;
@@ -26,8 +27,11 @@ public class ObstacleAvoidance : MonoBehaviour
         motor = gameObject.GetComponent<TankMotor>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
+    {
+        Avoid();
+    }
+    public void Avoid()
     {
         switch (CurrentAvoidanceState)
         {
@@ -40,20 +44,21 @@ public class ObstacleAvoidance : MonoBehaviour
                 break;
             case Avoidance.turnToAvoid:
                 turnToAvoid();
+                Debug.Log(Angle);
                 if(CanMove == false)
                 {
-                    ChangeState(Avoidance.moveToAvoid);
                     Timer = TimeToMove;
+                    ChangeState(Avoidance.moveToAvoid);
                 }
                 break;
             case Avoidance.moveToAvoid:
                 moveToAvoid();
-                Timer -= Time.deltaTime;
+                
                 if(Timer <= 0)
                 {
                     ChangeState(Avoidance.none);
                 }
-                if(CanMove == false)
+                if(CanMove == true)
                 {
                    ChangeState(Avoidance.turnToAvoid);
                 }
@@ -66,18 +71,21 @@ public class ObstacleAvoidance : MonoBehaviour
     }
     public void turnToAvoid()
     {
-        if(transform.rotation.y != transform.rotation.y + AvoidAngle)
-        {
+        
+        
             motor.Rotate(data.rotateSpeed);
-        }
+        
+        
     }
     public void moveToAvoid()
     {
+        Timer -= Time.deltaTime;
         motor.Move(data.moveSpeed);
     }
     public void ChangeState(Avoidance newState)
     {
         CurrentAvoidanceState = newState;
+        Debug.Log("Changing my state to " + newState.ToString());
     }
 
 }
