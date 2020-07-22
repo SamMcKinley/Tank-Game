@@ -13,4 +13,11 @@ public class GameManager : Singleton<GameManager>
     {
         HealthPickups.Remove(Index);
     }
+    public void SpawnEnemy(Room room)
+    {
+        GameObject Enemy = Instantiate(EnemyTanks[Random.Range(0, EnemyTanks.Count)], room.EnemySpawn.position, Quaternion.identity);
+        room.AssignedEnemy = Enemy;
+        Enemy.GetComponent<AIController>().WayPoint = room.Waypoints;
+        Enemy.GetComponent<FieldOfView>().target = Player;
+    }
 }

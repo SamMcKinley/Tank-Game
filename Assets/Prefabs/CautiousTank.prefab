@@ -124,12 +124,10 @@ GameObject:
   - component: {fileID: 4652074429081541428}
   - component: {fileID: 9014030761454797771}
   - component: {fileID: 4671896357061981935}
-  - component: {fileID: 4671896357061981933}
   - component: {fileID: 4671896357061981940}
   - component: {fileID: 6747934954980448460}
-  - component: {fileID: 4671896357061981942}
-  - component: {fileID: 5820189586286130628}
   - component: {fileID: 8268237122112529477}
+  - component: {fileID: 7083213669809109295}
   m_Layer: 0
   m_Name: CautiousTank
   m_TagString: Enemy
@@ -193,7 +191,7 @@ MonoBehaviour:
   MaxHealth: 5
   isFleeing: 0
   fireRate: 0
-  HealthScript: {fileID: 0}
+  HealthScript: {fileID: 9014030761454797771}
   CowardlySearchRange: 0
   StoppingDistance: 0
   FleeLimit: 0
@@ -237,31 +235,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4671896357061981933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7611263536876927860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e81a35c497b6804a8b44d5b88236cb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WayPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  CurrentWaypoint: 0
-  data: {fileID: 387222216086376109}
-  motor: {fileID: 4652074429081541428}
-  CanSee: 0
-  Timer: 0
-  CanShoot: 0
-  SafeDistance: 0
-  avoidance: {fileID: 6747934954980448460}
-  CurrentState: 0
 --- !u!114 &4671896357061981940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ca0103bbb3e90479cbce450af3e0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 4671896357061981933}
+  controller: {fileID: 7083213669809109295}
   ViewRadius: 5
   ViewAngle: 90
   target: {fileID: 0}
@@ -283,35 +256,6 @@ MonoBehaviour:
     m_Bits: 256
   obstacleAvoidance: {fileID: 6747934954980448460}
 --- !u!114 &6747934954980448460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7611263536876927860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76483a480b5bf734899fb7ae6a91a4af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentAvoidanceState: 0
-  TimeToMove: 3
-  CanMove: 0
-  AvoidAngle: 45
---- !u!114 &4671896357061981942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7611263536876927860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06edefdcffc561b48aa990dff48ea474, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 387222216086376109}
---- !u!114 &5820189586286130628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -340,6 +284,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 387222216086376109}
+--- !u!114 &7083213669809109295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611263536876927860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3b2544a66dc134690b562d6f31c0bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WayPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CurrentWaypoint: 0
+  data: {fileID: 387222216086376109}
+  motor: {fileID: 4652074429081541428}
+  CanSee: 0
+  Timer: 0
+  CanShoot: 0
+  SafeDistance: 0
+  avoidance: {fileID: 6747934954980448460}
+  CurrentState: 0
 --- !u!1 &7611263536876927862
 GameObject:
   m_ObjectHideFlags: 0

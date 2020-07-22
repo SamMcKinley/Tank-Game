@@ -10,7 +10,10 @@ public class MapGenerator : MonoBehaviour
     private Room[,] grid;
     private float roomWidth = 50f;
     private float roomHeight = 50f;
+    public bool LevelOfTheDay = false;
+    public int SeedNumber;
 
+    
     public GameObject RandomRoomPrefab()
     {
         return gridPrefabs[Random.Range(0, gridPrefabs.Length)];
@@ -40,6 +43,7 @@ public class MapGenerator : MonoBehaviour
                 tempRoomObj.name = "Room_" + currentColumn + "," + currentRow;
 
                 Room tempRoom = tempRoomObj.GetComponent<Room>();
+                GameManager.Instance.SpawnEnemy(tempRoom);
 
                 grid[currentColumn, currentRow] = tempRoom;
 
@@ -94,7 +98,17 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (LevelOfTheDay == true)
+        {
+            int Date = System.DateTime.Now.Month + System.DateTime.Now.Day + System.DateTime.Now.Year;
+            Random.InitState(Date);
+        }
+        else
+        {
+            Random.InitState(SeedNumber);
+        }
         GenerateGrid();
+
     }
 
     // Update is called once per frame

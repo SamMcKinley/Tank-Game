@@ -7,7 +7,7 @@ public class CautiousPersonality : AIController
     // Start is called before the first frame update
     void Start()
     {
-        
+        CurrentState = StateMachine.patrol;
     }
 
     // Update is called once per frame
