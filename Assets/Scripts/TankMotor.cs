@@ -34,29 +34,11 @@ public class TankMotor : MonoBehaviour
     //Handle rotating the tank
     public void Rotate(float speed)
     {
-        //create a vector to hold our rotation data
-        Vector3 rotateVector;
-        //Start by rotating by one degree per frame draw
-        rotateVector = Vector3.up;
-        
+        Vector3 rotateVector = Vector3.up * speed * Time.deltaTime;
+        tf.Rotate(rotateVector, Space.Self);
 
-        if (speed < 0)
-        {
-            //adjust rotation based off speed
-            rotateVector -= new Vector3(0, Time.deltaTime * Mathf.Abs(speed),0);
-            //pass our rotation vector into transform.rotate
-            transform.Rotate(-rotateVector, Space.Self);
 
-        }
-        else
-        {
-            //adjust rotation based off speed
-            rotateVector += new Vector3(0, Time.deltaTime * Mathf.Abs(speed), 0);
-            //pass our rotation vector into transform.rotate
-            transform.Rotate(rotateVector, Space.Self);
-        }
-        
-        
+
     }
     public void RotateTowards(Vector3 target)
     {

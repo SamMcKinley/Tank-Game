@@ -41,9 +41,11 @@ public class MapGenerator : MonoBehaviour
 
                 //Give the room a meaningful name
                 tempRoomObj.name = "Room_" + currentColumn + "," + currentRow;
+                
 
                 Room tempRoom = tempRoomObj.GetComponent<Room>();
                 GameManager.Instance.SpawnEnemy(tempRoom);
+                GameManager.Instance.Rooms.Add(tempRoom);
 
                 grid[currentColumn, currentRow] = tempRoom;
 
@@ -85,6 +87,7 @@ public class MapGenerator : MonoBehaviour
 
             }
         }
+        
     }
     
     public void generateGrid()
@@ -108,6 +111,7 @@ public class MapGenerator : MonoBehaviour
             Random.InitState(SeedNumber);
         }
         GenerateGrid();
+        GameManager.Instance.Respawn();
 
     }
 

@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Room : MonoBehaviour {
+public class Room : MonoBehaviour 
+{
 
 	public GameObject doorNorth;
 	public GameObject doorSouth;
@@ -11,6 +12,7 @@ public class Room : MonoBehaviour {
 	public Transform EnemySpawn;
 	public GameObject AssignedEnemy;
     public List<Transform> Waypoints;
+    public Transform PlayerSpawn;
 
     private void Update()
     {

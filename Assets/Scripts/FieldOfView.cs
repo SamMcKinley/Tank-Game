@@ -14,6 +14,7 @@ public class FieldOfView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        target = GameManager.Instance.Player;
         obstacleAvoidance = gameObject.GetComponent<ObstacleAvoidance>();
     }
 

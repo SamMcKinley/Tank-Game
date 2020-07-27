@@ -37,7 +37,7 @@ public class ObstacleAvoidance : MonoBehaviour
         {
             case Avoidance.none:
                 none();
-                if(CanMove == true)
+                if (CanMove == true)
                 {
                     ChangeState(Avoidance.turnToAvoid);
                 }
@@ -45,7 +45,7 @@ public class ObstacleAvoidance : MonoBehaviour
             case Avoidance.turnToAvoid:
                 turnToAvoid();
                 Debug.Log(Angle);
-                if(CanMove == false)
+                if (CanMove == false)
                 {
                     Timer = TimeToMove;
                     ChangeState(Avoidance.moveToAvoid);
@@ -53,14 +53,14 @@ public class ObstacleAvoidance : MonoBehaviour
                 break;
             case Avoidance.moveToAvoid:
                 moveToAvoid();
-                
-                if(Timer <= 0)
+
+                if (Timer <= 0)
                 {
                     ChangeState(Avoidance.none);
                 }
-                if(CanMove == true)
+                if (CanMove == true)
                 {
-                   ChangeState(Avoidance.turnToAvoid);
+                    ChangeState(Avoidance.turnToAvoid);
                 }
                 break;
         }
@@ -71,11 +71,11 @@ public class ObstacleAvoidance : MonoBehaviour
     }
     public void turnToAvoid()
     {
-        
-        
-            motor.Rotate(data.rotateSpeed);
-        
-        
+
+
+        motor.Rotate(data.rotateSpeed);
+
+
     }
     public void moveToAvoid()
     {

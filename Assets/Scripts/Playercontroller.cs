@@ -9,6 +9,7 @@ public class Playercontroller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.Player = this.gameObject.transform;
         data = GetComponent<TankData>();
         motor = GetComponent<TankMotor>();
     }
