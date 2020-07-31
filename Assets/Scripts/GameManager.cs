@@ -10,6 +10,30 @@ public class GameManager : Singleton<GameManager>
     public List<GameObject> EnemyTanks;
     public List<GameObject> EnemiesUnderAttack;
     public List<Room> Rooms;
+    public MapGenerator generator;
+    public bool LevelOfTheDay;
+    public bool TwoPlayer;
+    public float MusicVolume;
+    public float SoundEffectsVolume;
+
+    private void Start()
+    {
+        generator = GameObject.FindObjectOfType<MapGenerator>();
+        generator.LevelOfTheDay = LevelOfTheDay;
+        GameSetup();
+    }
+
+    public void GameSetup()
+    {
+        if (TwoPlayer)
+        {
+            Debug.Log("Two Player Game");
+        }
+        else
+        {
+            Debug.Log("One Player Game");
+        }
+    }
     public void RemoveHealthFromList(GameObject Index)
     {
         HealthPickups.Remove(Index);
