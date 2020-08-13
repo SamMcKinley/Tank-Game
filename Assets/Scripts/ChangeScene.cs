@@ -47,4 +47,9 @@ public class ChangeScene : MonoBehaviour
     {
         SceneManager.LoadScene("Start Screen");
     }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("Game Over Screen");
+    }
 }

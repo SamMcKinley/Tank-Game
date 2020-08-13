@@ -42,6 +42,7 @@ public class Health : MonoBehaviour
     private void Die()
     {
         GameManager.Instance.EnemiesUnderAttack.Remove(this.gameObject);
+
         Destroy(this.gameObject);
     }
     

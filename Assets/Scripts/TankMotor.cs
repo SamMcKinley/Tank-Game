@@ -11,17 +11,21 @@ public class TankMotor : MonoBehaviour
     private CharacterController characterController;
     private TankData data;
     private Transform tf;
+    private AudioSource TankAudio;
 
     private void Start()
     {
         characterController = gameObject.GetComponent<CharacterController>();
         data = gameObject.GetComponent<TankData>();
         tf = gameObject.GetComponent<Transform>();
+        TankAudio = gameObject.GetComponent<AudioSource>();
     }
     public void Shoot(GameObject Bullet, Transform FirePoint)
     {
         //Instantiate the bullet
         Instantiate(Bullet, FirePoint.position, FirePoint.rotation);
+        TankAudio.volume = GameManager.Instance.SoundEffectsVolume;
+        TankAudio.Play();
     }
     //Handle moving the tank
     public void Move(float speed)

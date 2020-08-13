@@ -111,8 +111,7 @@ public class MapGenerator : MonoBehaviour
             Random.InitState(SeedNumber);
         }
         GenerateGrid();
-        GameManager.Instance.Respawn();
-
+        GameManager.Instance.GameSetup();
     }
 
     // Update is called once per frame

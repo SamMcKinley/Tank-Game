@@ -21,6 +21,7 @@ public class TankData : MonoBehaviour
     public float NoiseDistance;
     public float HearingDistance;
     public bool CanHear;
+    
 
 }
 
