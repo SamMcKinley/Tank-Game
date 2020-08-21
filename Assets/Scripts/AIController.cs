@@ -71,7 +71,6 @@ public class AIController : MonoBehaviour
 
     protected void patrol()
     {
-        Debug.Log(WayPoint[CurrentWaypoint]);
         if (avoidance.CurrentAvoidanceState == ObstacleAvoidance.Avoidance.none)
         {
             motor.Move(data.moveSpeed);
@@ -80,7 +79,6 @@ public class AIController : MonoBehaviour
         }        //Check if we are close enough to the current waypoint
         if (Vector3.Distance(transform.position, WayPoint[CurrentWaypoint].position) < 1)
         {
-            Debug.Log(Vector3.Distance(transform.position, WayPoint[CurrentWaypoint].position));
             //If we are, switch to the next waypoint
             //if our current waypoint is greater than or equal to waypoint.size
             if (CurrentWaypoint >= WayPoint.Count)

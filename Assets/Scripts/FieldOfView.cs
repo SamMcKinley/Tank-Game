@@ -25,9 +25,7 @@ public class FieldOfView : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward);
         if (Physics.Raycast(transform.position, transform.forward, out Hit, ViewRadius, ObstacleLayer))
         {
-            Debug.Log(Hit.collider.name);
             
-                Debug.Log("Can Move");
                 obstacleAvoidance.CanMove = true;
             
             

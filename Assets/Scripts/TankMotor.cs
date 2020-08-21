@@ -10,14 +10,14 @@ public class TankMotor : MonoBehaviour
     //Need a reference to the character controller component
     private CharacterController characterController;
     private TankData data;
-    private Transform tf;
+    public Transform tf;
     private AudioSource TankAudio;
 
     private void Start()
     {
         characterController = gameObject.GetComponent<CharacterController>();
         data = gameObject.GetComponent<TankData>();
-        tf = gameObject.GetComponent<Transform>();
+        tf = gameObject.transform;
         TankAudio = gameObject.GetComponent<AudioSource>();
     }
     public void Shoot(GameObject Bullet, Transform FirePoint)
@@ -31,6 +31,7 @@ public class TankMotor : MonoBehaviour
     public void Move(float speed)
     {
         // Create a vector to hold our speed data
+        Debug.Log(tf);
         Vector3 speedVector = tf.forward * speed *Time.deltaTime;
         characterController.SimpleMove(speedVector);
     }
@@ -46,7 +47,6 @@ public class TankMotor : MonoBehaviour
     }
     public void RotateTowards(Vector3 target)
     {
-        Debug.Log(target);
         Vector3 VectorToTarget;
         //A line that goes from our current position to the target's position
         if(data.isFleeing == true)

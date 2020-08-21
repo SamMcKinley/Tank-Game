@@ -44,7 +44,6 @@ public class ObstacleAvoidance : MonoBehaviour
                 break;
             case Avoidance.turnToAvoid:
                 turnToAvoid();
-                Debug.Log(Angle);
                 if (CanMove == false)
                 {
                     Timer = TimeToMove;
@@ -85,7 +84,6 @@ public class ObstacleAvoidance : MonoBehaviour
     public void ChangeState(Avoidance newState)
     {
         CurrentAvoidanceState = newState;
-        Debug.Log("Changing my state to " + newState.ToString());
     }
 
 }

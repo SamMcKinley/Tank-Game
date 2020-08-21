@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1679811444902866372}
+  - component: {fileID: 381706102}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -30,3 +31,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &381706102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630383920060498780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21fde5530046494d95d22c5d8b9e7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerPrefab: {fileID: 100012, guid: 65e92f227846e794883569c427a9c4c3, type: 3}
+  Player: {fileID: 0}
+  PlayerTwo: {fileID: 0}
+  HealthPickups:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  EnemyTanks:
+  - {fileID: 787312319088207442, guid: e7ed25a666316c7478812134576c8111, type: 3}
+  - {fileID: 7611263536876927860, guid: 1b5877f7d0dfb1148a71a14d2d7eb46a, type: 3}
+  - {fileID: 1109355209185452592, guid: 0798ce2e167d80e41a6d2f7b7d5c22ac, type: 3}
+  - {fileID: 6181657300726693839, guid: eefc870ece24b3f4283fbcc8c38c0acb, type: 3}
+  EnemiesUnderAttack: []
+  Rooms: []
+  generator: {fileID: 0}
+  LevelOfTheDay: 0
+  TwoPlayer: 0
+  MusicVolume: 1
+  SoundEffectsVolume: 1
+  PlayerOneLives: 3
+  PlayerTwoLives: 3
+  PlayerOneGameObject: {fileID: 0}
+  PlayerTwoGameObject: {fileID: 0}

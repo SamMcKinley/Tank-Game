@@ -20,7 +20,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         if (IsInitialized)
         {
-            Debug.LogError("Attempting to create a second GameManager");
+            Debug.Log("Attempting to create a second GameManager");
             Destroy(this.gameObject);
         }
         else

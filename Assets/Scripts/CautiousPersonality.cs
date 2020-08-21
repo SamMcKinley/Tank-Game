@@ -17,15 +17,12 @@ public class CautiousPersonality : AIController
         {
             case StateMachine.patrol:
                 patrol();
-                Debug.Log("In patrol state");
                 if (CanSee == true)
                 {
-                    Debug.Log("Changing to advance state");
                     ChangeState(StateMachine.advance);
                 }
                 if (data.Health != data.MaxHealth)
                 {
-                    Debug.Log("Changing to flee state");
                     ChangeState(StateMachine.flee);
                 }
                 break;
@@ -33,17 +30,14 @@ public class CautiousPersonality : AIController
                 advance();
                 if (Vector3.Distance(transform.position, GameManager.Instance.Player.position) < data.Range)
                 {
-                    Debug.Log("Changing to attack state");
                     ChangeState(StateMachine.attack);
                 }
                 if (CanSee == false)
                 {
-                    Debug.Log("Changing to patrol state");
                     ChangeState(StateMachine.patrol);
                 }
                 if (data.Health != data.MaxHealth)
                 {
-                    Debug.Log("Changing to flee state again");
                     ChangeState(StateMachine.flee);
                 }
                 break;
@@ -53,12 +47,10 @@ public class CautiousPersonality : AIController
                 attack();
                 if (Vector3.Distance(transform.position, GameManager.Instance.Player.position) > data.Range)
                 {
-                    Debug.Log("Changing to advance state again");
                     ChangeState(StateMachine.advance);
                 }
                 if (data.Health != data.MaxHealth)
                 {
-                    Debug.Log("Changing to flee state yet again");
                     ChangeState(StateMachine.flee);
                 }
                 break;
@@ -66,7 +58,6 @@ public class CautiousPersonality : AIController
                 flee();
                 if (Vector3.Distance(transform.position, GameManager.Instance.Player.position) > SafeDistance)
                 {
-                    Debug.Log("Changing to search state");
                     ChangeState(StateMachine.search);
                 }
                 break;
@@ -98,7 +89,6 @@ public class CautiousPersonality : AIController
         }
         if (HealthPickupPosition != null && GameManager.Instance.HealthPickups[Index] != null)
         {
-            Debug.Log(HealthPickupPosition);
             motor.Move(data.moveSpeed);
             motor.RotateTowards(HealthPickupPosition);
 

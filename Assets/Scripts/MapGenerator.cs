@@ -101,6 +101,7 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LevelOfTheDay = GameManager.Instance.LevelOfTheDay;
         if (LevelOfTheDay == true)
         {
             int Date = System.DateTime.Now.Month + System.DateTime.Now.Day + System.DateTime.Now.Year;
