@@ -109,7 +109,6 @@ public class GameManager : Singleton<GameManager>
 
     public void AdjustCameras()
     {
-        Debug.Log("Adjust Cameras method has been called");
         if (PlayerOneGameObject != null)
         {
             Camera camera = PlayerOneGameObject.GetComponentInChildren<Camera>();
